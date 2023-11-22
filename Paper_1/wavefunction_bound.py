@@ -1,5 +1,3 @@
-# Please save files here: /home/varqa/schrodinger/main_v1.py (\\wsl.localhost\Ubuntu\home\varqa\schrodinger)
-
 #######
 # Import relevant libraries
 #######
@@ -18,7 +16,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from scipy import sparse
 from scipy.sparse.linalg import eigs, eigsh
 
-import quantum_library as ql
+import quantum_functions as qf
 
 plt.style.use(["science", "notebook"])
 
@@ -48,6 +46,21 @@ def main():
     max_distance = np.max(distances[condition_met])
     print(f"The furthest point from (L/2, L/2) is {max_distance:.3f} units away.")
 
+    # Flatten the arrays for saving
+    X1_flat = X1[condition_met].flatten()
+    X2_flat = X2[condition_met].flatten()
+    distances_flat = distances[condition_met].flatten()
+
+    # Combine the flattened arrays
+    combined_array = np.column_stack((X1_flat, X2_flat, distances_flat))
+
+    # Save to CSV
+    output_file_path = '/home/varqa/schrodinger/wavefunction_bound_data.csv'
+    np.savetxt(output_file_path, combined_array, delimiter=",", header="X1, X2, Distance", comments='')
+
+    # Print message to confirm saving
+    print(f"Results saved to {output_file_path}")
+       
     plt.figure(figsize=(10, 10))
     plt.scatter(X1[condition_met], X2[condition_met], c="gray", s=1)
     plt.xlabel("x1")
