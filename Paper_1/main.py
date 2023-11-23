@@ -109,7 +109,7 @@ print(f"The probability of |x1 - x2| < {distance_threshold} m is {prob}")
 
 
 #######
-# Create initial state on extended PDE grid
+# Create initial state on extended PDE grid 
 #######
 
 

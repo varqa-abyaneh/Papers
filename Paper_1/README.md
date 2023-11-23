@@ -7,7 +7,6 @@ In this document we describe how to reproduce the results given in the paper ent
 
 # Setup
 Code was written for Python 3.11.2.  
-
 Create a Virtual Environment and install the requirements:  
 `pip install -r requirements.txt`
 
@@ -24,7 +23,7 @@ This code is used to produce the results (on the tabs "Figure 4 & Table 2 inform
 
 *Tab: Figure 4 & Table 2 information*  
 
-The input data is given on the top table. These can paramters can be put into the "Setup" parameters and then the code can be run. You will obtain the relevant information.
+The input data is given on the top table. These can parameters can be put into the "Setup" parameters and then the code can be run. You will obtain the relevant information.
 
 * Plot of the wavefunction using python graphics (Figure 4)
 * Raw data for the wavefunction (Figure 4)
@@ -32,16 +31,16 @@ The input data is given on the top table. These can paramters can be put into th
 
 *Tab: Figure 5 & Table 3 information*  
 
-The input data is given on the top table. These can paramters can be put into the "Setup" parameters and then the code can be run. You will obtain the relevant information.
+The input data is given on the top table. These can parameters can be put into the "Setup" parameters and then the code can be run. You will obtain the relevant information.
 
 * Printed leakage (calibration impacting Table 3 results)
 * Printed leakage (calibration impacting plot of Figure 5)
 
 *Tab: Convergence Testing*  
 
-The input data is given in the tables. These can paramters can be put into the "Setup" parameters and then the code can be run. You will obtain the relevant information outputs in the table showing the convergence analysis. 
+The input data is given in the tables. These can parameters can be put into the "Setup" parameters and then the code can be run. You will obtain the relevant information outputs in the table showing the convergence analysis. 
 
-*Additionl comment*  
+*Additional comment*  
 
 There is a line in the code "qf.graphic_manual_2D_evolve(num_time_steps, psi_2D_t, X_ext, Y_ext, deltaT)" that has been commented out. You can uncomment this and it will show you a plot of the evolution of the 2-dimensional wavefunction with time. This is a visual aid to show how the wavefunction spreads with time. 
 

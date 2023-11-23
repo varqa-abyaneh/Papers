@@ -30,7 +30,7 @@ def main():
 
     X1, X2 = np.meshgrid(x1, x2)
 
-    # Calculating the given expressions
+    # Calculating the given expressions 
     Z1 = (
         1 / (4 * X1**2)
         + 1 / (4 * X2**2)
