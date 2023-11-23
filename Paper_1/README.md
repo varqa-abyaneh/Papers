@@ -10,6 +10,8 @@ Code was written for Python 3.11.2.
 Create a Virtual Environment and install the requirements:  
 `pip install -r requirements.txt`
 
+For graph output you'll need to install a backend, for example on Debian:  
+`sudo apt-get install python3-tk`
 
 # Running
 Here are some remarks on running the code
@@ -42,7 +44,7 @@ The input data is given in the tables. These can parameters can be put into the 
 
 *Additional comment*  
 
-There is a line in the code "qf.graphic_manual_2D_evolve(num_time_steps, psi_2D_t, X_ext, Y_ext, deltaT)" that has been commented out. You can uncomment this and it will show you a plot of the evolution of the 2-dimensional wavefunction with time. This is a visual aid to show how the wavefunction spreads with time. 
+There is a line in the code [qf.graphic_manual_2D_evolve(num_time_steps, psi_2D_t, X_ext, Y_ext, deltaT)](https://github.com/varqa-abyaneh/Papers/blob/c50a98d3b5f2532cc4fb842d6d0845c87d0ee145/Paper_1/main.py#L165) that has been commented out. You can uncomment this and it will show you a plot of the evolution of the 2-dimensional wavefunction with time. This is a visual aid to show how the wavefunction spreads with time. 
 
 ## wavefunction_bound.py
 This code is used to produce the results (on the tab "Figure 3 information") in the accomanying spreadsheet. When running the code, you will be asked to put in a value for L and d. The graph will be produced and the raw data saved. 
