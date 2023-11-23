@@ -11,6 +11,8 @@ Code was written for Python 3.11.2.
 Create a Virtual Environment and install the requirements:  
 `pip install -r requirements.txt`
 
+For graph output you'll need to install a backend, for exmaple on Debian:  
+`sudo apt-get install python3-tk`
 
 # Running
 Here are some remarks on running the code
