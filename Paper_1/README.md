@@ -6,7 +6,10 @@ In this document we describe how to reproduce the results given in the paper ent
 * wavefunction_bound.py
 
 # Setup
-Here are some setup remarks
+Code was written for Python 3.11.2.  
+
+Create a Virtual Environment and install the requirements:
+`pip install -r requirements.txt`
 
 
 # Running
