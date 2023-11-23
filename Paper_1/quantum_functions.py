@@ -14,7 +14,6 @@ plt.style.use(["science", "notebook"])
 # Declare logger to track code progress
 logger = structlog.get_logger()
 
-
 # Universal constants
 Coulomb = 8.99e9
 hbar = 1.05457182e-34
@@ -25,11 +24,13 @@ hbar = 1.05457182e-34
 ###########
 
 
+# Coulomb potential function for ion-ion interaction (including regularisation term)
 def coulomb_potential(x, y, q_1, q_2, epsilon):
     V = Coulomb * q_1 * q_2 / (np.sqrt((x - y) ** 2) + epsilon)
     return V
 
 
+# This function creates the boundary potential due to the QZE confinement measurements
 def boundary_potential(x, y, q_1, q_2, d, L, Hard_Wall):
     x_1 = x + (L / 2 - d / 2)
     x_2 = y + (L / 2 - d / 2)
@@ -47,11 +48,8 @@ def boundary_potential(x, y, q_1, q_2, d, L, Hard_Wall):
     V = np.where(F_Total < F_Max, 0, Hard_Wall)
     return V
 
-###########
-# Create gaussian
-###########
 
-# Define the Gaussian function
+# Define a Gaussian function
 def gaussian(x, y, x0, y0, width):
     return np.exp(-((x - x0)**2 + (y - y0)**2) / (2 * width**2))
 
@@ -61,11 +59,13 @@ def gaussian(x, y, x0, y0, width):
 ##########
 
 
+# Create potential energy matrix for Hamiltonian
 def create_potential_matrix(V, N):
     U = sparse.diags(V.reshape(N**2), (0))
     return U
 
 
+# Create kinetic energy matrix for Hamiltonian (finite difference approach)
 def create_kinetic_matrix(N, delta_X, m_1, m_2):
     diag_1 = np.ones([N]) * -(hbar**2) / (2 * m_1 * delta_X**2)
     diag_2 = np.ones([N]) * -(hbar**2) / (2 * m_2 * delta_X**2)
@@ -77,6 +77,7 @@ def create_kinetic_matrix(N, delta_X, m_1, m_2):
     return T
 
 
+# A matrix representing the relative momentum between ion 1 and ion 2
 def create_relative_momentum_matrix(N, delta_X):
     # Create the single-particle momentum operator for one dimension
     diag = np.zeros(N)
@@ -92,7 +93,6 @@ def create_relative_momentum_matrix(N, delta_X):
     p_rel = p_rel * (hbar / delta_X)
     return p_rel
 
-
 # Reshape eigenvector into 2-D spatial plot
 def eigenvector_1D_to_2D(eigenvector, N):
     eigenvector_2D = eigenvector.T.reshape((N, N))
@@ -104,7 +104,7 @@ def eigenvector_1D_to_2D(eigenvector, N):
 ##########
 
 
-# Solve future states
+# Solve future states using Crank Nicholson method
 def solve_future_states(num_step, initial_state_1D, A, B, N_ext):
     psi_1D_t = []
     psi_2D_t = []
@@ -123,7 +123,7 @@ def solve_future_states(num_step, initial_state_1D, A, B, N_ext):
     return np.array(psi_1D_t), np.array(psi_2D_t)
 
 
-# Solve future expectation values of relative momentum
+# Obtain time-series of expectation of relative momentum, given time-series of quantum states
 def solve_future_expected_relative_momentum(num_step, psi_1D_t, p_rel_ext):
     relative_expected_momentum_t = []
     for step in range(num_step):
@@ -132,18 +132,8 @@ def solve_future_expected_relative_momentum(num_step, psi_1D_t, p_rel_ext):
     return relative_expected_momentum_t
 
 
+# Obtain time-series of expectation of square of relative momentum, given time-series of quantum states
 def solve_future_expected_relative_momentum_squared(num_step, psi_1D_t, p_rel_ext):
-    """
-    Solve future expectation values of the squared relative momentum operator.
-
-    Parameters:
-    num_step (int): Number of time steps.
-    psi_1D_t (numpy.ndarray): Time evolution of the quantum state.
-    p_rel (scipy.sparse matrix): Relative momentum operator.
-
-    Returns:
-    numpy.ndarray: Expected values of the squared relative momentum operator over time.
-    """
     relative_expected_momentum_squared_t = []
     p_rel_squared = p_rel_ext.dot(p_rel_ext)  # Square the relative momentum operator
 
@@ -155,15 +145,12 @@ def solve_future_expected_relative_momentum_squared(num_step, psi_1D_t, p_rel_ex
     return np.array(relative_expected_momentum_squared_t)
 
 
-
-
-
 ##########
 # Probability functions
 ##########
 
 
-# Probability fusion
+# Probability of fusion for a given a quantum state
 def probability_within_distance(eigenvector_2D, delta_X, distance_threshold=1e-15):
     N = eigenvector_2D.shape[0]
     prob = 0.0
@@ -211,6 +198,7 @@ def probability_within_boundary(
     return prob
 
 
+# Calculate leakage probability 
 def calculate_leakage(
     x: float,
     y: float,
