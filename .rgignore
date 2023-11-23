@@ -1,0 +1,33 @@
+# Ripgrep ignores - used by some IDEs to search source code
+
+# Ignore 'prof' directory
+/prof/
+
+# Ignore Git directory
+/.git/
+
+# Ignore Node modules if you ever use them
+/node_modules/
+
+# Ignore Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Ignore Virtual Environment
+/venv/
+/env/
+/.venv/
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore various backup, temporary, or cache files
+*~
+*.bak
+*.swp
+*.swo
+.DS_Store

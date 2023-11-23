@@ -55,7 +55,7 @@ def main():
     combined_array = np.column_stack((X1_flat, X2_flat, distances_flat))
 
     # Save to CSV
-    output_file_path = '/home/varqa/schrodinger/wavefunction_bound_data.csv'
+    output_file_path = "wavefunction_bound_data.csv"
     np.savetxt(output_file_path, combined_array, delimiter=",", header="X1, X2, Distance", comments='')
 
     # Print message to confirm saving

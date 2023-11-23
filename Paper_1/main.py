@@ -41,7 +41,7 @@ Hard_Wall = 1.00e-10 # Represents infinite potential where F_Total > F_Max
 # Initial confinement
 L = 1.00e-6  # Charged plat enclosure (m)
 d = 1.00e-12  # QZE confinement region (m)
-N = 300  # Number PDE spatial grid points in x and y dimension
+N = 30  # Number PDE spatial grid points in x and y dimension
 delta_X = d / N  # Spatial grid length (m)
 distance_threshold = 1e-15  # fusion threshold distance (m)
 
@@ -160,7 +160,8 @@ eigenvector_2D_flat = (eigenvector_2D**2).flatten()
 # Combine the flattened arrays
 combined_array = np.column_stack((X_flat, Y_flat, eigenvector_2D_flat))
 # Save to CSV
-np.savetxt("/home/varqa/schrodinger/2d_wavefunction_data.csv", combined_array, delimiter=",", header="Particle 1 Position,Particle 2 Position,Eigenvector Squared", comments='')
+save_file="2d_wavefunction_data.csv"
+np.savetxt(save_file, combined_array, delimiter=",", header="Particle 1 Position,Particle 2 Position,Eigenvector Squared", comments='')
 # Print message to confirm saving
-print("Data saved to /home/varqa/schrodinger/2d_wavefunction_data.csv")
+print(f"Data saved to: {save_file}")
 
