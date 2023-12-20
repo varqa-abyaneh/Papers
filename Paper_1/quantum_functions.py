@@ -381,7 +381,7 @@ def graphic_animation_1D(
         return (line,)
 
     ax.set_xlim(0, n)
-    ax.set_ylim(0, np.max(psi_2D_t))  # Set to an appropriate max value
+    ax.set_ylim(0, np.max(psi_2D_t))  # Set to an appropriate max value 
     ax.set_xlabel("|x - y|")
     ax.set_ylabel("Probability Amplitude")
     ani = FuncAnimation(

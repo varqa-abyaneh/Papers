@@ -39,7 +39,7 @@ q_2 = 1.60217663e-19  # 2st particle charge (C)
 
 # Numerical parameters
 epsilon = 1e-15  # Regularisation to stop potential energy singularity (m)
-Hard_Wall = 1.00e-10 # Represents infinite potential where F_Total > F_Max
+Hard_Wall = 1.00e-6 # Represents infinite potential where F_Total > F_Max
 
 
 # Initial confinement
@@ -169,12 +169,15 @@ leakage = qf.calculate_leakage(X, Y, q_1, q_2, d, L, psi_2D_t, N, N_ext)
 formatter = FuncFormatter(qf.format_ticks)
 plt.figure(figsize=(8, 8))
 plt.pcolormesh(X, Y, eigenvector_2D**2, cmap="nipy_spectral")
-plt.xlabel("Particle 1 Position (m)")
-plt.ylabel("Particle 2 Position (m)")
+c = plt.pcolormesh(X, Y, eigenvector_2D**2, cmap="nipy_spectral")
+plt.xlabel("x_1 - position of ion 1 (m)")
+plt.ylabel("x_2 - position of ion 2 (m)")
 plt.axis("on")
 plt.title(f"Ground State: deuterium-tritium QZE trapped in {d:.1e}m region")
 plt.gca().xaxis.set_major_formatter(formatter)
 plt.gca().yaxis.set_major_formatter(formatter)
+# Add a colorbar
+plt.colorbar(c, label='Probability Density')
 plt.show()
 # Flatten the X, Y, and squared eigenvector arrays for saving
 X_flat = X.flatten()

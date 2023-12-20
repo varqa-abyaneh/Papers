@@ -63,8 +63,8 @@ def main():
        
     plt.figure(figsize=(10, 10))
     plt.scatter(X1[condition_met], X2[condition_met], c="gray", s=1)
-    plt.xlabel("x1")
-    plt.ylabel("x2")
+    plt.xlabel("x_1 - position of ion 1")
+    plt.ylabel("x_2 - position of ion 2")
     plt.title("Shaded regions have F_Total < F_Total^Max")
 
     # Plotting center point
