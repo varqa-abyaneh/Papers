@@ -45,7 +45,7 @@ Hard_Wall = 1.00e-6 # Represents infinite potential where F_Total > F_Max
 # Initial confinement
 L = 1.00e-6  # Charged plat enclosure (m)
 d = 1.00e-12  # QZE confinement region (m)
-N = 30  # Number PDE spatial grid points in x and y dimension
+N = 300  # Number PDE spatial grid points in x and y dimension
 delta_X = d / N  # Spatial grid length (m)
 distance_threshold = 1e-15  # fusion threshold distance (m)
 
