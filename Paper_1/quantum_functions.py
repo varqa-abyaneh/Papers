@@ -252,7 +252,7 @@ def calculate_leakage(
     print(f"Sum inside initial grid: {sum_inside}")
     print(f"Sum outside initial grid: {sum_outside}")
     print(f"Total sum: {total_sum}")
-    print(f"Leakage: {leakage * 100:.4f}%")
+    print(f"Leakage: {leakage * 100:.25f}%")
     return leakage
 
 
