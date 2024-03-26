@@ -35,11 +35,11 @@ def calculate(d, delta_d, delta_t) -> tuple[float, float]:
 
     # Numerical parameters
     epsilon = 1e-15  # Regularisation to stop potential energy singularity (m)
-    Hard_Wall = 1.00e-6 # Represents infinite potential where F_Total > F_Max
+    Hard_Wall = 1.00e-10 # Represents infinite potential where F_Total > F_Max
 
     # Initial confinement
-    L = 1.00e-6  # QZE confinement region (m)
-    N = 30  # Number PDE spatial grid points in x and y dimension
+    L = 5.00e-6  # QZE confinement region (m)
+    N = 300 # Number PDE spatial grid points in x and y dimension
     delta_X = d / N  # Spatial grid length (m)
 
     # Extended confinement
@@ -72,7 +72,7 @@ def calculate(d, delta_d, delta_t) -> tuple[float, float]:
 
     # Solve ground state eigenvectors and eigenvalues of H_{L}
     eigenvalues, eigenvectors = eigsh(H, k=selected_eignestate + 1, which="SM")
-    print("Ground state eigenvalue:", eigenvalues[selected_eignestate])
+    print("Energy eigenvalue:", eigenvalues[selected_eignestate])
 
     # Select eigenvector of interest
     eigenvector = eigenvectors[:, selected_eignestate]
@@ -112,7 +112,7 @@ def calculate(d, delta_d, delta_t) -> tuple[float, float]:
 
     # Create extended confined Hamiltonian H_{confinement_ratio*L}
     V_ext = qf.coulomb_potential(X_ext, Y_ext, q_1, q_2, epsilon)+ qf.boundary_potential(
-        X_ext, Y_ext, q_1, q_2, d, L, Hard_Wall
+        X_ext, Y_ext, q_1, q_2, confinement_ratio*d, L, Hard_Wall
     )
     U_ext = qf.create_potential_matrix(V_ext, N_ext)
     T_ext = qf.create_kinetic_matrix(N_ext, delta_X_ext, m_1, m_2)
